@@ -261,7 +261,10 @@ fuzz_input populate_input(const uint8_t* data, size_t data_size) noexcept
     const auto storage_key2 = generate_interesting_value(account_storage_key2_8bits);
     account.storage[{}] = storage_key2;
     account.storage[storage_key1] = storage_key2;
-    account.storage[storage_key2] = storage_key1;
+
+    // Add dirty value as if it has been already modified in this transaction.
+    account.storage[storage_key2] = {storage_key1, true};
+    
     account.codehash = generate_interesting_value(account_codehash_8bits);
     account.code = {data, data_size};  // Use remaining data as code.
 
