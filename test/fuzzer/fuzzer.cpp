@@ -304,6 +304,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t data_size) noe
     if (print_input)
     {
         std::cout << "rev: " << int{in.rev} << "\n";
+        std::cout << "depth: " << int{in.msg.depth} << "\n";
         std::cout << "code: " << to_hex(code) << "\n";
         std::cout << "decoded: " << decode(code, in.rev) << "\n";
         std::cout << "input: " << to_hex({in.msg.input_data, in.msg.input_size}) << "\n";
